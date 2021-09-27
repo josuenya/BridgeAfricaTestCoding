@@ -5,24 +5,40 @@
         <jet-banner />
 
         <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
+            <nav class="bg-white border-b border-gray-100 shadow-lg sticky top-0">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
                         <div class="flex">
-                            <!-- Logo -->
-                            <div class="flex-shrink-0 flex items-center">
+                            <!-- Logo text -->
+                            <div class="flex-shrink-0 flex items-center font-bold">
                                 <Link :href="route('dashboard')">
-                                    <jet-application-mark class="block h-9 w-auto" />
+                                    BridgeAfricaTestCoding
                                 </Link>
                             </div>
 
-                            <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
-                                </jet-nav-link>
+                            <div class=" hidden justify-center p-4 space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <search-bar />
                             </div>
+                        </div>
+
+                        <div class="justify-end flex items-center font-bold space-x-8 right-0">
+                            <Link :href="route('dashboard')"> 
+                                Home
+                            </Link>
+                            <Link href="#"> 
+                                Marketplace
+                            </Link>
+                            <Link :href="route('products.index')"> 
+                                Produits 
+                            </Link>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                            </svg>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -103,15 +119,11 @@
                                     <template #content>
                                         <!-- Account Management -->
                                         <div class="block px-4 py-2 text-xs text-gray-400">
-                                            Manage Account
+                                            Gérer votre compte
                                         </div>
 
                                         <jet-dropdown-link :href="route('profile.show')">
                                             Profile
-                                        </jet-dropdown-link>
-
-                                        <jet-dropdown-link :href="route('api-tokens.index')" v-if="$page.props.jetstream.hasApiFeatures">
-                                            API Tokens
                                         </jet-dropdown-link>
 
                                         <div class="border-t border-gray-100"></div>
@@ -119,7 +131,7 @@
                                         <!-- Authentication -->
                                         <form @submit.prevent="logout">
                                             <jet-dropdown-link as="button">
-                                                Log Out
+                                                se Deconnecter
                                             </jet-dropdown-link>
                                         </form>
                                     </template>
@@ -224,8 +236,10 @@
             </header>
 
             <!-- Page Content -->
-            <main>
-                <slot></slot>
+            <main class="mt-16 px-8">
+                <div>
+                    <slot name="content"></slot>
+                </div>
             </main>
         </div>
     </div>
@@ -240,6 +254,8 @@
     import JetNavLink from '@/Jetstream/NavLink.vue'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink.vue'
     import { Head, Link } from '@inertiajs/inertia-vue3';
+    import SearchBar from '@/Components/SearchBar.vue'
+
 
     export default defineComponent({
         props: {
@@ -255,6 +271,7 @@
             JetNavLink,
             JetResponsiveNavLink,
             Link,
+            SearchBar,
         },
 
         data() {

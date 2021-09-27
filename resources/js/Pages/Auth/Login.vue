@@ -15,18 +15,18 @@
         <form @submit.prevent="submit">
             <div>
                 <jet-label for="email" value="Email" />
-                <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus />
+                <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus placeholder="Entrez votre adresse mail" />
             </div>
 
             <div class="mt-4">
-                <jet-label for="password" value="Password" />
-                <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
+                <jet-label for="password" value="mots de passe" />
+                <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" placeholder="mots de passe" />
             </div>
 
             <div class="block mt-4">
                 <label class="flex items-center">
                     <jet-checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                    <span class="ml-2 text-sm text-gray-600">Se Souvenir</span>
                 </label>
             </div>
 
@@ -36,8 +36,15 @@
                 </Link>
 
                 <jet-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
+                    Se Connecter
                 </jet-button>
+
+                <div class="mt-5">                
+                    <Link :href="route('register')" class="ml-4 text-sm text-gray-700 text-center text-blue-800 underline ">
+                        vous n'avez pas de compte?
+                    </Link>
+                </div>
+
             </div>
         </form>
     </jet-authentication-card>
